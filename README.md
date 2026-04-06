@@ -96,6 +96,7 @@ icon: mdi:transmission-tower
 
 ## Notes
 
+- **Data is typically 2–3 days behind.** ESB Networks publish smart meter readings with a delay — the most recent data available is usually 2 to 3 days ago, regardless of how frequently the integration updates. This is a limitation of the ESB Networks portal, not the integration.
 - ESB Networks rate-limits logins (~2 per IP per 24 hours). The integration caches sessions for 12 hours to minimise login attempts.
 - If you see `CAPTCHA detected` in the logs, the integration will retry automatically on the next 6-hour cycle.
 - Data appears in the Energy Dashboard after the first successful update (may take a few minutes on first run due to the volume of historical data).
