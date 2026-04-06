@@ -1,0 +1,64 @@
+# ESB Smart Meter — Dashboard Card Examples
+#
+# Replace YOUR_MPRN with your 11-digit MPRN (digits only, no spaces).
+# The statistic ID format is: esb_smart_meter:consumption_YOUR_MPRN
+#
+# To add these cards in Home Assistant:
+#   Dashboard → Edit → Add Card → Manual → paste the YAML below
+
+# ─────────────────────────────────────────
+# 1. Daily Consumption Bar Chart (30 days)
+#    Shows kWh consumed each day.
+#    Requires: built-in statistics-graph card
+# ─────────────────────────────────────────
+type: statistics-graph
+title: Daily Consumption — Last 30 Days
+entities:
+  - entity: esb_smart_meter:consumption_YOUR_MPRN
+    name: Grid Import
+stat_types:
+  - change
+period: day
+days_to_show: 30
+chart_type: bar
+
+---
+
+# ─────────────────────────────────────────
+# 2. Monthly Consumption Bar Chart
+#    Shows kWh consumed each month.
+# ─────────────────────────────────────────
+type: statistics-graph
+title: Monthly Consumption
+entities:
+  - entity: esb_smart_meter:consumption_YOUR_MPRN
+    name: Grid Import
+stat_types:
+  - change
+period: month
+days_to_show: 365
+chart_type: bar
+
+---
+
+# ─────────────────────────────────────────
+# 3. Simple Entity Card
+#    Shows yesterday's total consumption (kWh).
+#    The sensor value is the most recent complete day.
+# ─────────────────────────────────────────
+type: entity
+entity: sensor.esb_smart_meter_consumption
+name: Yesterday's Usage
+icon: mdi:transmission-tower
+
+---
+
+# ─────────────────────────────────────────
+# 4. Glance Card — quick consumption summary
+# ─────────────────────────────────────────
+type: glance
+title: ESB Smart Meter
+entities:
+  - entity: sensor.esb_smart_meter_consumption
+    name: Yesterday
+    icon: mdi:transmission-tower
