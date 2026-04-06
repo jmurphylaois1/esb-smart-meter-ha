@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ESB Smart Meter",
+        "description": "Enter your ESB Networks account credentials and MPRN.",
+        "data": {
+          "username": "Email address",
+          "password": "Password",
+          "mprn": "MPRN"
+        },
+        "data_description": {
+          "mprn": "11-digit Meter Point Reference Number from your ESB Networks account",
+          "username": "Your myaccount.esbnetworks.ie email address"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This MPRN is already configured."
+    }
+  }
+}
