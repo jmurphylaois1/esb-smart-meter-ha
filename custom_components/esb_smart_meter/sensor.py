@@ -38,6 +38,7 @@ class ESBSmartMeterSensor(SensorEntity):
     _attr_device_class = SensorDeviceClass.ENERGY
     _attr_state_class = SensorStateClass.TOTAL_INCREASING
     _attr_icon = "mdi:lightning-bolt"
+    _attr_should_poll = False
 
     def __init__(self, api: ESBNetworksAPI, mprn: str, entry_id: str):
         self._api = api
