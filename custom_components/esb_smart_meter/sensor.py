@@ -2,7 +2,7 @@ import asyncio
 import logging
 from datetime import datetime, timedelta, timezone
 
-from homeassistant.components.recorder.models import StatisticData, StatisticMetaData
+from homeassistant.components.recorder.models import StatisticData, StatisticMetaData, StatisticMeanType
 from homeassistant.components.recorder.statistics import async_add_external_statistics
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
@@ -126,6 +126,7 @@ class ESBSmartMeterSensor(SensorEntity):
             stat_data.append(StatisticData(start=dt, state=hourly[dt], sum=accumulated))
 
         meta = StatisticMetaData(
+            mean_type=StatisticMeanType.NONE,
             has_mean=False,
             has_sum=True,
             name="ESB Smart Meter Consumption",
