@@ -61,7 +61,7 @@ class ESBSmartMeterSensor(SensorEntity):
         await self._do_update()
         self._remove_listener = async_track_time_interval(
             self.hass,
-            lambda _: asyncio.ensure_future(self._do_update()),
+            lambda _: self.hass.async_create_task(self._do_update()),
             timedelta(hours=UPDATE_INTERVAL_HOURS),
         )
 
