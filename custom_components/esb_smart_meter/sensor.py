@@ -137,6 +137,7 @@ class ESBSmartMeterSensor(SensorEntity):
             source=DOMAIN,
             statistic_id=self.statistic_id,
             unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
+            unit_class="energy",
         )
 
         async_add_external_statistics(self.hass, meta, stat_data)
