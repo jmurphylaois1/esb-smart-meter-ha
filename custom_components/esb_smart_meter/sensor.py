@@ -59,9 +59,13 @@ class ESBSmartMeterSensor(SensorEntity):
         await super().async_added_to_hass()
         _LOGGER.info("ESB: sensor added to hass, scheduling updates every %dh", UPDATE_INTERVAL_HOURS)
         await self._do_update()
+
+        async def _scheduled_update(now):
+            await self._do_update()
+
         self._remove_listener = async_track_time_interval(
             self.hass,
-            lambda _: self.hass.async_create_task(self._do_update()),
+            _scheduled_update,
             timedelta(hours=UPDATE_INTERVAL_HOURS),
         )
 
